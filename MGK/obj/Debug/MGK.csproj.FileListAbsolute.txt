@@ -1,0 +1,7 @@
+C:\Users\TheWojwymX\Desktop\MGK\MGK\bin\Debug\MGK.exe
+C:\Users\TheWojwymX\Desktop\MGK\MGK\bin\Debug\MGK.pdb
+C:\Users\TheWojwymX\Desktop\MGK\MGK\obj\Debug\MGK.csproj.AssemblyReference.cache
+C:\Users\TheWojwymX\Desktop\MGK\MGK\obj\Debug\MGK.csproj.SuggestedBindingRedirects.cache
+C:\Users\TheWojwymX\Desktop\MGK\MGK\obj\Debug\MGK.csproj.CoreCompileInputs.cache
+C:\Users\TheWojwymX\Desktop\MGK\MGK\obj\Debug\MGK.exe
+C:\Users\TheWojwymX\Desktop\MGK\MGK\obj\Debug\MGK.pdb
