@@ -8,7 +8,10 @@ namespace MGK
 
         public Matrix4x4()
         {
-            
+            for (int i = 0; i < 16; i++)
+            {
+                entries[i] = 0;
+            }
         }
 
         public Matrix4x4(float[] values)
@@ -219,7 +222,7 @@ namespace MGK
         {
             setToIdentity();
             entries[5] = (float)Math.Cos(Math.PI * angle / 180);
-            entries[6] = (float)Math.Sin(Math.PI * angle / 180);
+            entries[6] = -(float)Math.Sin(Math.PI * angle / 180);
             entries[9] = -entries[6];
             entries[10] = entries[5];
         }
@@ -228,7 +231,7 @@ namespace MGK
         {
             setToIdentity();
             entries[0] = (float)Math.Cos(Math.PI * angle / 180);
-            entries[2] = -(float)Math.Sin(Math.PI * angle / 180);
+            entries[2] = (float)Math.Sin(Math.PI * angle / 180);
             entries[8] = -entries[2];
             entries[10] = entries[0];
         }
@@ -237,7 +240,7 @@ namespace MGK
         {
             setToIdentity();
             entries[0] = (float)Math.Cos(Math.PI * angle / 180);
-            entries[1] = (float)Math.Sin(Math.PI * angle / 180);
+            entries[1] = -(float)Math.Sin(Math.PI * angle / 180);
             entries[4] = -entries[1];
             entries[5] = entries[0];
         }
@@ -249,6 +252,14 @@ namespace MGK
                 entries[4] * v.x + entries[5] * v.y + entries[6] * v.z + entries[7] * v.w,
                 entries[8] * v.x + entries[9] * v.y + entries[10] * v.z + entries[11] * v.w,
                 entries[12] * v.x + entries[13] * v.y + entries[14] * v.z + entries[15] * v.w);
+        }
+
+        public void printMatrix()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine($"{entries[4*i]} {entries[4*i+1]} {entries[4*i+2]} {entries[4*i+3]}");
+            }
         }
     }
 }
