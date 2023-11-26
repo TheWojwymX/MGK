@@ -20,18 +20,26 @@ namespace MGK
             y += v.y;
         }
         
+        public Vector3 AddVectors(Vector3 v)
+        {
+            return new Vector3(x + v.x, y + v.y, z + v.z);
+        }
+        
         public void SubVector(Vector3 v)
         {
             x -= v.x;
             y -= v.y;
             z -= v.z;
         }
-
-        public void MulVectorByScalar(float a)
+        
+        public Vector3 SubVectors(Vector3 v)
         {
-            x *= a;
-            y *= a;
-            z *= a;
+            return new Vector3(x - v.x, y - v.y, z - v.z);
+        }
+
+        public Vector3 MulVectorByScalar(float a)
+        {
+            return new Vector3(x * a, y * a, z * a);
         }
 
         public void DivVectorByScalar(float a)
@@ -53,16 +61,16 @@ namespace MGK
             return (float)Math.Sqrt(x * x + y * y + z * z);
         }
 
-        public void VectorNormalize()
+        public Vector3 VectorNormalize()
         {
             float v = VectorLength();
-            if (v != 0)
+            if (v == 0)
             {
-                DivVectorByScalar(v);
+                throw new Exception("Can't normalize a zero vector");
             }
             else
             {
-                Console.WriteLine("Can't normalize a zero vector");
+                return new Vector3(x / v, y / v, z / v);
             }
         }
 
@@ -85,6 +93,11 @@ namespace MGK
             return new Vector3(y * v.z - z * v.y,
                               z * v.x - x * v.z,
                               x * v.y - y * v.x);
+        }
+
+        public Quaternion ToQuaternion()
+        {
+            return new Quaternion(0, this);
         }
 
         public float FindAngle(Vector3 v)

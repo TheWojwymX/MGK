@@ -80,20 +80,17 @@ namespace MGK
             m2 = new Matrix4x4(l2);
             m3 = m3.Multiply(m2);
             m3.printMatrix();
+            Console.WriteLine("");
 
+            
+            Vector3 vector = new Vector3(-1, -1, -1);
+            float angle = 270; // degrees
+            Vector3 axis = new Vector3(1, 0, 0); // x-axis
 
+            Quaternion quaternion = new Quaternion(0, new Vector3(0, 0, 0));
+            Vector3 rotatedVector = quaternion.RotateVector(vector, angle, axis);
 
-
-
-
-
-
-
-
-
-
-
-
+            Console.WriteLine($"Rotated Vector: {rotatedVector.x}, {rotatedVector.y}, {rotatedVector.z}");
         }
     }
 }
