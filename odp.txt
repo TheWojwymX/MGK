@@ -1,4 +1,4 @@
-C:/Users/TheWojwymX/Desktop/MGK/MGK/bin/Debug/MGK.exe
+- Macierze -
 1. Klasa Matrix4x4
 
 2.Tworzenie macierzy i macierz jednostkowa   
@@ -44,6 +44,7 @@ Transponowanie i odwrotność
 0,9545454 -0,375 0,2386364 -0,2386364
 -0,8181818 0,3409091 -0,2045455 0,2045455
 0,5454546 -0,2272727 0,1363636 -0,1363636
+
 Translacja, skalowanie, rotacja
 1 2 3 4
 5 6 7 8
@@ -74,4 +75,28 @@ Translacja, skalowanie, rotacja
 274 316 358 400
 426 484 542 600
 
+
+-Kwaterniony-
+1. Klasa Quaternion.cs
+Quaternion 1: 1 + 1i + 1j + 1k
+Quaternion 2: 5 + 5i + 5j + 5k
+
+2. Dodawanie i odejmowanie Kwaternionów
+Dodawanie: 6 + 6i + 6j + 6k
+Odejmowanie: -4 - 4i - 4j - 4k
+
+Mnozenie i dzielenie
+Mnozenie: -10 + 10i + 10j + 10k
+Dzielenie: 0,2
+
+3. Obrot punktu [-1, -1, -1] o 270 wokol osi x
+Rotated Vector: -0,9999999, -0,9999999, 0,9999999
+
+4. Brak przemiennosci mnozenia
+Quaternion 1: 1 - 3i - 2j + 1k
+Quaternion 2: -6 + 7i - 3j - 5k
+q1 x q2: 14 + 38i + 1j + 12k
+q2 x q1: 14 + 12i + 17j - 34k
+
+Process finished with exit code 0.
 

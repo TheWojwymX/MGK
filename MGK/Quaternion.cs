@@ -72,5 +72,14 @@ namespace MGK
 
             return rotatedVectorQuat.v;
         }
+
+        public string printQuaternion()
+        {
+            string vx = v.x == 0 ? "" : (v.x > 0 ? " + " : " - ") + Math.Abs(v.x) + "i";
+            string vy = v.y == 0 ? "" : (v.y > 0 ? " + " : " - ") + Math.Abs(v.y) + "j";
+            string vz = v.z == 0 ? "" : (v.z > 0 ? " + " : " - ") + Math.Abs(v.z) + "k";
+
+            return $"{a}{vx}{vy}{vz}";
+        }
     }
 }
