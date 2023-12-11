@@ -56,6 +56,20 @@ namespace MGK
             intersection = es.FindLineSegmentsIntersection(A, A_prime, B, B_prime);
             Console.WriteLine(intersection.x);
             Console.WriteLine(intersection.y);
+            
+            Console.WriteLine("");
+            Vector3 sphereCenter = new Vector3(0, 0, 0);
+            Vector3 linePoint1 = new Vector3(3, -1, 2);
+            Vector3 linePoint2 = new Vector3(5, 3, -4);
+            Vector3[] intersections = es.FindSphereLineIntersections(sphereCenter, (float)Math.Sqrt(26), linePoint1, linePoint2);
+            foreach (var point in intersections)
+            {
+                Console.WriteLine($"Intersection point: ({point.x}, {point.y}, {point.z})");
+            }
+
+
+
+
         }
     }
 }

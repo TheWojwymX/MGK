@@ -156,5 +156,38 @@ namespace MGK
             return null;
         }
         
+        public Vector3[] FindSphereLineIntersections(Vector3 sphereCenter, float radius, Vector3 linePoint1, Vector3 linePoint2)
+        {
+            Vector3 d = linePoint2.SubVectors(linePoint1); 
+            Vector3 f = linePoint1.SubVectors(sphereCenter); 
+
+            float a = d.dotProduct(d);
+            float b = 2 * f.dotProduct(d); 
+            float c = f.dotProduct(f) - radius * radius; 
+
+            float discriminant = b * b - 4 * a * c;
+            if (discriminant < 0)
+            {
+                return new Vector3[0];
+            }
+            else
+            {
+                float t1 = (-b - (float)Math.Sqrt(discriminant)) / (2 * a);
+                float t2 = (-b + (float)Math.Sqrt(discriminant)) / (2 * a);
+
+                Vector3 intersection1 = linePoint1.AddVectors(d.MulVectorByScalar(t1));
+                Vector3 intersection2 = linePoint1.AddVectors(d.MulVectorByScalar(t2));
+
+                if (discriminant == 0)
+                {
+                    return new Vector3[] { intersection1 };
+                }
+                else
+                {
+                    return new Vector3[] { intersection1, intersection2 };
+                }
+            }
+        }
+        
     }
 }
