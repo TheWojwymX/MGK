@@ -1,3 +1,5 @@
+using System;
+
 namespace MGK
 {
     public class Line
@@ -14,6 +16,12 @@ namespace MGK
         {
             Direction = direction;
             Point = point;
+        }
+        
+        public void PrintInfo()
+        {
+            Console.WriteLine($"Direction: (X: {Direction.x}, Y: {Direction.y}, Z: {Direction.z})");
+            Console.WriteLine($"Point: (X: {Point.x}, Y: {Point.y}, Z: {Point.z})");
         }
     }
 }

@@ -7,69 +7,71 @@ namespace MGK
     {
         public static void Main(string[] args)
         {
-            Vector3 p1 = new Vector3(-2, 5, 0);
-            Vector3 p2 = new Vector3(-2, 4, 0);
-            Vector3 d1 = new Vector3(3, 1, 5);
-            Vector3 d2 = new Vector3(1, -5, 3);
-
             EquationSolver es = new EquationSolver();
-            Vector3 result = es.CalculateLineIntersection3D(p1, d1, p2, d2);
-            if (result == null)
+            
+            Line line1 = new Line(new Vector3(3, 1, 5), new Vector3(-2, 5, 0)); 
+            Line line2 = new Line(new Vector3(1, -5, 3), new Vector3(-2, 4, 0)); 
+            Vector3 intersectionResult = es.CalculateLineIntersection3D(line1, line2);
+            if (intersectionResult == null)
             {
-                Console.WriteLine("Rownolegle");
+                Console.WriteLine("Lines are parallel or collinear.");
             }
-            
+            else
+            {
+                Console.WriteLine($"Intersection: {intersectionResult}");
+            }
             Console.WriteLine("");
-            float angle = es.calculateAngleLineLine(d1,d2);
-            Console.WriteLine(angle);
             
+            float angleBetweenLines = es.calculateAngleLineLine(line1, line2);
+            Console.WriteLine($"Angle between lines: {angleBetweenLines}");
             Console.WriteLine("");
-            Vector3 v1 = new Vector3(-2,2,-1);
-            Vector3 v2 = new Vector3(3,-1,2);
-            Vector4 plane = new Vector4(2,3,3,-8);
-            Vector3 res = es.calculateLinePlaneIntersection(v1, v2, plane);
-            Console.WriteLine(res.x);
-            Console.WriteLine(res.y);
-            Console.WriteLine(res.z);
             
+            Line lineForPlaneIntersection = new Line(new Vector3(3, -1, 2), new Vector3(-2, 2, -1)); 
+            Vector4 plane = new Vector4(2, 3, 3, -8); 
+            Vector3 linePlaneIntersection = es.calculateLinePlaneIntersection(lineForPlaneIntersection, plane);
+            Console.WriteLine($"Line-Plane Intersection: X: {linePlaneIntersection.x}, Y: {linePlaneIntersection.y}, Z: {linePlaneIntersection.z}");
+
             Console.WriteLine("");
             Vector4 u1 = new Vector4(2, -1, 1, -8);
             Vector4 u2 = new Vector4(4, 3, 1, 14);
             Line l1 = new Line();
             l1 = es.CalculatePlaneIntersectionLine(u1, u2);
-            Console.WriteLine(l1.Direction.x);
-            Console.WriteLine(l1.Direction.y);
-            Console.WriteLine(l1.Direction.z);
-            Console.WriteLine(l1.Point.x);
-            Console.WriteLine(l1.Point.y);
-            Console.WriteLine(l1.Point.z);
-            
+            l1.PrintInfo();
             Console.WriteLine("");
+
+            
             Console.WriteLine(es.CalculateAngleBetweenPlanes(u1,u2));
-            
             Console.WriteLine("");
-            Vector2 A = new Vector2(5, 4);
-            Vector2 A_prime = new Vector2(10, 6);
-            Vector2 B = new Vector2(5, 5);
-            Vector2 B_prime = new Vector2(10, 3);
-            Vector2 intersection = new Vector2();
-            intersection = es.FindLineSegmentsIntersection(A, A_prime, B, B_prime);
-            Console.WriteLine(intersection.x);
-            Console.WriteLine(intersection.y);
             
-            Console.WriteLine("");
-            Vector3 sphereCenter = new Vector3(0, 0, 0);
-            Vector3 linePoint1 = new Vector3(3, -1, 2);
-            Vector3 linePoint2 = new Vector3(5, 3, -4);
-            Vector3[] intersections = es.FindSphereLineIntersections(sphereCenter, (float)Math.Sqrt(26), linePoint1, linePoint2);
-            foreach (var point in intersections)
+            Vector3 directionA = new Vector3(10, 10, 6).SubVectors(new Vector3(5, 5, 4)); 
+            Vector3 directionB = new Vector3(10, 10, 3).SubVectors(new Vector3(5, 5, 5));
+            Line lineA = new Line(directionA, new Vector3(5, 5, 4)); 
+            Line lineB = new Line(directionB, new Vector3(5, 5, 5)); 
+            
+            Vector3 intersectionPoint = es.FindLineSegmentsIntersection3D(
+                lineA.Point, lineA.Point.AddVectors(lineA.Direction),
+                lineB.Point, lineB.Point.AddVectors(lineB.Direction));
+            if (intersectionPoint!=null)
             {
-                Console.WriteLine($"Intersection point: ({point.x}, {point.y}, {point.z})");
+                Vector3 point = intersectionPoint;
+                Console.WriteLine($"Intersection Point: (X: {point.x}, Y: {point.y}, Z: {point.z})");
             }
+            else
+            {
+                Console.WriteLine("No intersection found or segments are not within bounds.");
+            }
+            Console.WriteLine("");
+            
+            Vector3 point1 = new Vector3(3, -1, -2);
+            Vector3 point2 = new Vector3(5, 3, -4);
+            Vector3 direction = point2.SubVectors(point1); // Direction is point2 - point1
+            Line lineForSphereIntersection = new Line(direction, point1);
 
-
-
-
+            Vector3[] sphereIntersections = es.FindSphereLineIntersections(new Vector3(0,0,0), (float)Math.Sqrt(26), lineForSphereIntersection);
+            foreach (var point in sphereIntersections)
+            {
+                Console.WriteLine($"Sphere Intersection point: ({point.x}, {point.y}, {point.z})");
+            }
         }
     }
 }
