@@ -103,10 +103,14 @@ namespace MGK
         
         public float calculateAngleLinePlane(Line line, Vector4 plane)
         {
-            Vector3 lineDirection = line.Direction;
-            Vector3 planeNormal = new Vector3(plane.x, plane.y, plane.z);
+            Vector3 lineDirection = line.Direction.VectorNormalize();
+            Vector3 planeNormal = new Vector3(plane.x, plane.y, plane.z).VectorNormalize();
 
-            return lineDirection.FindAngle(planeNormal);
+            float dotProduct = lineDirection.dotProduct(planeNormal);
+            float angleRadians = (float)Math.Acos(dotProduct);
+            float angleDegrees = angleRadians * (180f / (float)Math.PI);
+
+            return Math.Min(angleDegrees, 90 - angleDegrees);
         }
         
         public Line CalculatePlaneIntersectionLine(Vector4 planeA, Vector4 planeB)

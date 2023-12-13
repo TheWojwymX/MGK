@@ -9,6 +9,7 @@ namespace MGK
         {
             EquationSolver es = new EquationSolver();
             
+            Console.WriteLine("Zadanie 1");
             Line line1 = new Line(new Vector3(3, 1, 5), new Vector3(-2, 5, 0)); 
             Line line2 = new Line(new Vector3(1, -5, 3), new Vector3(-2, 4, 0)); 
             Vector3 intersectionResult = es.CalculateLineIntersection3D(line1, line2);
@@ -22,16 +23,25 @@ namespace MGK
             }
             Console.WriteLine("");
             
+            Console.WriteLine("Zadanie 2");
             float angleBetweenLines = es.calculateAngleLineLine(line1, line2);
             Console.WriteLine($"Angle between lines: {angleBetweenLines}");
             Console.WriteLine("");
             
+            Console.WriteLine("Zadanie 3");
             Line lineForPlaneIntersection = new Line(new Vector3(3, -1, 2), new Vector3(-2, 2, -1)); 
             Vector4 plane = new Vector4(2, 3, 3, -8); 
             Vector3 linePlaneIntersection = es.calculateLinePlaneIntersection(lineForPlaneIntersection, plane);
             Console.WriteLine($"Line-Plane Intersection: X: {linePlaneIntersection.x}, Y: {linePlaneIntersection.y}, Z: {linePlaneIntersection.z}");
-
             Console.WriteLine("");
+
+
+            Console.WriteLine("Zadanie 4");
+            float angleLinePlane = es.calculateAngleLinePlane(lineForPlaneIntersection, plane);
+            Console.WriteLine($"Angle between line and plane: {angleLinePlane} degrees");
+            Console.WriteLine("");
+            
+            Console.WriteLine("Zadanie 5");
             Vector4 u1 = new Vector4(2, -1, 1, -8);
             Vector4 u2 = new Vector4(4, 3, 1, 14);
             Line l1 = new Line();
@@ -39,10 +49,11 @@ namespace MGK
             l1.PrintInfo();
             Console.WriteLine("");
 
-            
+            Console.WriteLine("Zadanie 6");
             Console.WriteLine(es.CalculateAngleBetweenPlanes(u1,u2));
             Console.WriteLine("");
             
+            Console.WriteLine("Zadanie 7");
             Vector3 directionA = new Vector3(10, 10, 6).SubVectors(new Vector3(5, 5, 4)); 
             Vector3 directionB = new Vector3(10, 10, 3).SubVectors(new Vector3(5, 5, 5));
             Line lineA = new Line(directionA, new Vector3(5, 5, 4)); 
@@ -62,6 +73,7 @@ namespace MGK
             }
             Console.WriteLine("");
             
+            Console.WriteLine("Zadanie 8");
             Vector3 point1 = new Vector3(3, -1, -2);
             Vector3 point2 = new Vector3(5, 3, -4);
             Vector3 direction = point2.SubVectors(point1); // Direction is point2 - point1
