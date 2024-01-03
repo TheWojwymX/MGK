@@ -117,26 +117,26 @@ namespace MGK
         {
             Vector3 normalA = new Vector3(planeA.x, planeA.y, planeA.z);
             Vector3 normalB = new Vector3(planeB.x, planeB.y, planeB.z);
-            
+    
             Vector3 lineDirection = normalA.crossProduct(normalB);
 
             if (lineDirection.x == 0 && lineDirection.y == 0 && lineDirection.z == 0)
             {
                 return null;
             }
-            
-            float determinant = normalA.x * normalB.y - normalA.y * normalB.x;
+    
+            float determinant = normalA.x * normalB.z - normalA.z * normalB.x;
 
             if (Math.Abs(determinant) < 1e-5)
             {
                 return null; 
             }
 
-            // Setting z = 0
-            float x = (normalB.y * planeA.w - normalA.y * planeB.w) / determinant;
-            float y = (normalA.x * planeB.w - normalB.x * planeA.w) / determinant;
+            // Setting y = 0
+            float x = (normalA.z * planeB.w - normalB.z * planeA.w) / determinant;
+            float z = (normalB.x * planeA.w - normalA.x * planeB.w) / determinant;
 
-            Vector3 pointOnLine = new Vector3(x, y, 0);
+            Vector3 pointOnLine = new Vector3(x, 0, z);
 
             return new Line(lineDirection, pointOnLine);
         }
@@ -195,7 +195,7 @@ namespace MGK
 
         public Vector3[] FindSphereLineIntersections(Vector3 sphereCenter, float radius, Line line)
         {
-            Vector3 d = line.Direction; // Use the direction directly
+            Vector3 d = line.Direction; 
             Vector3 f = line.Point.SubVectors(sphereCenter);
 
             float a = d.dotProduct(d);

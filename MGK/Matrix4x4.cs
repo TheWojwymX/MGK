@@ -195,6 +195,34 @@ namespace MGK
             setToIdentity();
             entries[0] = entries[5] = entries[10] = scaleFactor;
         }
+        
+        public void setRotationFromVector(Vector3 rot)
+        {
+            // Convert degrees to radians if necessary
+            float xRad = (float)(Math.PI * rot.x / 180);
+            float yRad = (float)(Math.PI * rot.y / 180);
+            float zRad = (float)(Math.PI * rot.z / 180);
+
+            entries[0] = (float)(Math.Cos(yRad) * Math.Cos(zRad));
+            entries[1] = (float)(Math.Sin(xRad) * Math.Sin(yRad) * Math.Cos(zRad) - Math.Cos(xRad) * Math.Sin(zRad));
+            entries[2] = (float)(Math.Cos(xRad) * Math.Sin(yRad) * Math.Cos(zRad) + Math.Sin(xRad) * Math.Sin(zRad));
+            entries[3] = 0;
+
+            entries[4] = (float)(Math.Cos(yRad) * Math.Sin(zRad));
+            entries[5] = (float)(Math.Sin(xRad) * Math.Sin(yRad) * Math.Sin(zRad) + Math.Cos(xRad) * Math.Cos(zRad));
+            entries[6] = (float)(Math.Cos(xRad) * Math.Sin(yRad) * Math.Sin(zRad) - Math.Sin(xRad) * Math.Cos(zRad));
+            entries[7] = 0;
+
+            entries[8] = (float)(-Math.Sin(yRad));
+            entries[9] = (float)(Math.Sin(xRad) * Math.Cos(yRad));
+            entries[10] = (float)(Math.Cos(xRad) * Math.Cos(yRad));
+            entries[11] = 0;
+
+            entries[12] = 0;
+            entries[13] = 0;
+            entries[14] = 0;
+            entries[15] = 1;
+        }
 
         public void setRotationAxis(float angle, Vector3 v)
         {
